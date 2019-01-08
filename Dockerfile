@@ -2,12 +2,18 @@ FROM ubuntu:18.04
 
 WORKDIR /opt
 VOLUME /opt/coin
-EXPOSE 10000
+EXPOSE 10000 10001
 
 RUN apt-get update && apt-get install -y wget
-RUN wget https://github.com/BeamMW/beam/releases/download/mainnet-release/linux-beam-node-1.0.3976.tar.gz -O - | tar xzf -
+# RUN wget https://github.com/BeamMW/beam/releases/download/mainnet-release/linux-beam-node-1.0.3976.tar.gz -O - | tar xzf -
+# from https://builds.beam.mw/
+RUN wget https://builds.beam.mw/mainnet/2019.01.04/Release/linux/beam-node-1.0.4028.tar.gz -O - | tar xzf -
+RUN wget https://builds.beam.mw/mainnet/2019.01.04/Release/linux/wallet-api-1.0.4028.tar.gz -O - | tar xzf -
+RUN wget https://builds.beam.mw/mainnet/2019.01.04/Release/linux/beam-wallet-cli-1.0.4028.tar.gz -O - | tar xzf -
 
 RUN rm -rf /var/lib/apt/lists/*
 
-# peer from https://github.com/BeamMW/beam/releases https://www.beam.mw/downloads
-ENTRYPOINT ["/opt/beam-node", "--storage", "/opt/coin/node.db", "--history_dir", "/opt/coin/history/", "--temp_dir", "/opt/coin/tmp/", "--port", "10000", "--peer", "ap-node04.mainnet.beam.mw:8100", "--peer", "ap-node03.mainnet.beam.mw:8100", "--peer", "ap-node02.mainnet.beam.mw:8100", "--peer", "ap-node01.mainnet.beam.mw:8100", "--peer", "us-node04.mainnet.beam.mw:8100", "--peer", "us-node03.mainnet.beam.mw:8100", "--peer", "us-node02.mainnet.beam.mw:8100", "--peer", "us-node01.mainnet.beam.mw:8100", "--peer", "eu-node04.mainnet.beam.mw:8100", "--peer", "eu-node03.mainnet.beam.mw:8100", "--peer", "eu-node02.mainnet.beam.mw:8100", "--peer", "eu-node01.mainnet.beam.mw:8100"]
+COPY ./entrypoint.sh /opt/
+RUN chmod +x /opt/entrypoint.sh
+
+ENTRYPOINT ["/opt/entrypoint.sh"]

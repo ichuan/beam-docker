@@ -26,6 +26,7 @@ By using [CWSpear/local-persist](https://github.com/CWSpear/local-persist):
 
 ```
 curl -fsSL https://raw.githubusercontent.com/CWSpear/local-persist/master/scripts/install.sh | sudo bash
+mkdir -p /data/beam-data/{history,tmp,wallet}
 docker volume create -d local-persist -o mountpoint=/data/beam-data --name=beam-data
 ```
 
@@ -34,5 +35,5 @@ docker volume create -d local-persist -o mountpoint=/data/beam-data --name=beam-
 Using automated build image from <https://hub.docker.com/r/mixhq/beam/>:
 
 ```
-docker run --rm -itd --name ibeam -p --network host -v beam-data:/opt/coin mixhq/beam
+docker run --rm -itd --name ibeam --network host -v beam-data:/opt/coin mixhq/beam
 ```

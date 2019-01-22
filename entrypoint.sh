@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir -p /opt/coin/{history,tmp,wallet}
+
 if test $# -eq 0; then
   # generate wallet db if needed
   [ ! -f /opt/coin/wallet/wallet.db ] && {

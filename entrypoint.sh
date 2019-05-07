@@ -2,7 +2,7 @@
 
 set -e
 
-mkdir -p /opt/coin/{history,tmp,wallet}
+mkdir -p /opt/coin/wallet
 
 if test $# -eq 0; then
   # generate wallet db if needed
@@ -15,8 +15,6 @@ if test $# -eq 0; then
   # start node
   ## peer from https://github.com/BeamMW/beam/releases https://www.beam.mw/downloads
   /opt/beam-node --storage /opt/coin/node.db \
-    --history_dir /opt/coin/history/ \
-    --temp_dir /opt/coin/tmp/ \
     --port 10000 \
     --peer ap-node04.mainnet.beam.mw:8100 \
     --peer ap-node03.mainnet.beam.mw:8100 \

@@ -28,9 +28,6 @@ if test $# -eq 0; then
     --peer eu-node03.mainnet.beam.mw:8100 \
     --peer eu-node02.mainnet.beam.mw:8100 \
     --peer eu-node01.mainnet.beam.mw:8100 2>&1 &
-  # wallet (for receiving)
-  /opt/beam-wallet --wallet_path /opt/coin/wallet/wallet.db --pass word \
-    --command listen -n 127.0.0.1:10000 2>&1 &
   # wallet api
   exec /opt/wallet-api --port 10001 \
     --node_addr 127.0.0.1:10000 \

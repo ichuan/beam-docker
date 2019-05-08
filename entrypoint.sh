@@ -16,18 +16,9 @@ if test $# -eq 0; then
   ## peer from https://github.com/BeamMW/beam/releases https://www.beam.mw/downloads
   /opt/beam-node --storage /opt/coin/node.db \
     --port 10000 \
-    --peer ap-node04.mainnet.beam.mw:8100 \
-    --peer ap-node03.mainnet.beam.mw:8100 \
-    --peer ap-node02.mainnet.beam.mw:8100 \
-    --peer ap-node01.mainnet.beam.mw:8100 \
-    --peer us-node04.mainnet.beam.mw:8100 \
-    --peer us-node03.mainnet.beam.mw:8100 \
-    --peer us-node02.mainnet.beam.mw:8100 \
-    --peer us-node01.mainnet.beam.mw:8100 \
-    --peer eu-node04.mainnet.beam.mw:8100 \
-    --peer eu-node03.mainnet.beam.mw:8100 \
-    --peer eu-node02.mainnet.beam.mw:8100 \
-    --peer eu-node01.mainnet.beam.mw:8100 2>&1 &
+    --peer ap-nodes.mainnet.beam.mw:8100 \
+    --peer eu-nodes.mainnet.beam.mw:8100 \
+    --peer us-nodes.mainnet.beam.mw:8100 2>&1 &
   # wallet api
   exec /opt/wallet-api --port 10001 \
     --node_addr 127.0.0.1:10000 \

@@ -22,6 +22,7 @@ if test $# -eq 0; then
   # wallet api
   exec /opt/wallet-api --port 10001 \
     --node_addr 127.0.0.1:10000 \
+    --use_http 1 \
     --wallet_path /opt/coin/wallet/wallet.db \
     --pass word
 else
